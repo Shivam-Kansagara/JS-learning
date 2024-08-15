@@ -78,3 +78,42 @@ console.log("hello" && 2 && null && "ds"); // will keep looking to the right unt
 // Nullish Coalescing Operator
 // same as OR operator but will give false only on null,undefined that's it.
 console.log(undefined ?? null ?? 0 ?? "a");
+
+// for of loop
+const arr4 = ["a", "b", "c"];
+for (const item of arr4) {
+  console.log(item);
+}
+// for accessing both index and element you can use
+for (const item of arr4) {
+  console.log(`index : ${item[0]} and element : ${item}`);
+}
+// or use destructure
+for (const [index, element] of arr4.entries()) {
+  console.log(`index : ${index} and element : ${element}`);
+}
+
+//
+const arrr = ["1", "2"];
+const arrrw = arrr[0];
+const objs = {
+  [arrrw]: 2, // to access variable in left side use []
+  [arrr[1]]: "w",
+  random: arrrw, // to access variable in right side use them directly
+  fun: function (s, d) {
+    console.log("fun" + 2);
+  },
+};
+console.log(objs);
+// optional chaining
+console.log(objs.shivam?.hi ?? "no"); // if shivam present then only proceed to hi else return undefined
+// methods
+console.log(objs.fun?.()); // if function fun present in objs then excute it else return undefined
+// arrays
+console.log(arrr[3]?.ji); // if arrr[3] present then only proceed to ji else return undefined
+// iterating objects
+const entry = Object.entries(objs);
+console.log(Object.keys(objs));
+for (const [key, value] of Object.entries(objs)) {
+  console.log(key, value);
+}
