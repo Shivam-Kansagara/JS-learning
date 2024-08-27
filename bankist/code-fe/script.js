@@ -36,3 +36,42 @@ const section1 = document.querySelector('#section--1');
 scrollButton.addEventListener('click', () => {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+const navLinks = document.querySelector('.nav__links');
+
+navLinks.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+const operationsTabContainer = document.querySelector(
+  '.operations__tab-container'
+);
+const operationsContents = document.querySelectorAll('.operations__content');
+operationsTabContainer.addEventListener('click', function (e) {
+  if (
+    e.target?.closest('.operations__tab').classList.contains('operations__tab')
+  ) {
+    document.querySelectorAll('.operations__tab').forEach(function (val) {
+      val.classList.remove('operations__tab--active');
+    });
+    operationsContents.forEach(function (val) {
+      val.classList.remove('operations__content--active');
+    });
+
+    e.target
+      .closest('.operations__tab')
+      .classList.add('operations__tab--active');
+
+    const tabNumber = e.target
+      .closest('.operations__tab')
+      .getAttribute('data-tab');
+
+    document
+      .querySelector(`.operations__content--${tabNumber}`)
+      .classList.add('operations__content--active');
+  }
+});
