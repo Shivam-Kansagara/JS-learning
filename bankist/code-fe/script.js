@@ -152,3 +152,33 @@ const featuresImg = document.querySelectorAll('img[data-src]');
 featuresImg.forEach(val => {
   imgObserver.observe(val);
 });
+const slide = document.querySelectorAll('.slide');
+
+let curSlide = 0;
+
+const sliderBtnLeft = document.querySelector('.slider__btn--left');
+const sliderBtnRight = document.querySelector('.slider__btn--right');
+slide.forEach(function (v, i) {
+  v.style.transform = `translateX(${100 * i}%)`;
+});
+sliderBtnRight.addEventListener('click', function () {
+  if (curSlide === slide.length - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+  slide.forEach(function (v, i) {
+    v.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+  });
+});
+
+sliderBtnLeft.addEventListener('click', function () {
+  if (curSlide === 0) {
+    curSlide = slide.length - 1;
+  } else {
+    curSlide--;
+  }
+  slide.forEach(function (v, i) {
+    v.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+  });
+});
